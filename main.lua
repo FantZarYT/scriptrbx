@@ -1,7 +1,12 @@
-notif("Loaded successfully! Created by 3181#6962", 5)
-
+local f00lskidd = {
+    SchemeColor = Color3.fromRGB(10,143,0),
+    Background = Color3.fromRGB(0, 0, 0),
+    Header = Color3.fromRGB(0, 0, 0),
+    TextColor = Color3.fromRGB(255,255,255),
+    ElementColor = Color3.fromRGB(20, 20, 20)
+}
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("f00lskidd gui", "Midnight")
+local Window = Library.CreateLib("f00lskidd gui", f00lskidd)
 local Tab = Window:NewTab("Pr0nK")
 local Section = Tab:NewSection("Scripts")
 Section:NewButton("Remote Spy", "none", function()
@@ -37,5 +42,17 @@ end)
 local Tab = Window:NewTab("All Gam3s")
 local Section = Tab:NewSection("External")
 Section:NewButton("ESP + Aim Gui", "none", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/coastss/releases/main/universal.lua"))() 
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/AirHub/main/AirHub.lua"))()
+end)
+local Tab = Window:NewTab("Credits")
+local Section = Tab:NewSection("Thank You!")
+local Section = Tab:NewSection("Source By Kavo UI")
+local Section = Tab:NewSection("Script's Founded By 3181#6962")
+local Section = Tab:NewSection("For Idea this Script By FORGET#8726")
+local Sectiom = Tab:NewSection("Thank you for using this script")
+local Sectiom = Tab:NewSection("                          :D")
+local Tab = Window:NewTab("")
+local Section = Tab:NewSection("you found secret )")
+Section:NewButton("free fe script (check console)", "none", function()
+    print("https://www.youtube.com/watch?v=xvFZjo5PgG0")
 end)
