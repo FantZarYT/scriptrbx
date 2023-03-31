@@ -32,7 +32,7 @@ local TextLabel = Instance.new("TextLabel")
  
 --Properties
  
-SimpleSexGUI.Name = "SimpleSexGUI"
+SimpleSexGUI.Name = "S3x gui"
 SimpleSexGUI.Parent = game.CoreGui
  
  
@@ -57,7 +57,7 @@ lbltitle.Active = true
 lbltitle.Draggable = false
 lbltitle.Selectable = true
 lbltitle.Font = Enum.Font.SourceSansBold
-lbltitle.Text = "A Simple Fuck(ing) GUI!!"
+lbltitle.Text = "S3x gui"
 lbltitle.TextColor3 = Color3.new(0, 0, 0)
 lbltitle.TextSize = 20
  
@@ -76,7 +76,7 @@ btnSex.Active = true
 btnSex.Draggable = false
 btnSex.Selectable = true
 btnSex.Font = Enum.Font.SourceSansBold
-btnSex.Text = "Let's FUCK!!"
+btnSex.Text = "START"
 btnSex.TextColor3 = Color3.new(0, 0, 0)
 btnSex.TextSize = 20
  
