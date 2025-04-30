@@ -1,6 +1,3 @@
---[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -87,201 +84,214 @@ local TextChatService = game:GetService("TextChatService")
 
 local LocalPlayer = Players.LocalPlayer
 
--- Sound Effects
-local function playSound(soundId)
-    local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://" .. soundId
-    sound.Parent = SoundService
-    sound:Play()
-    sound.Ended:Connect(function()
-        sound:Destroy()
-    end)
-end
+-- daaaaa
 
--- Play initial sound
-playSound("2865227271")
-
--- GUI Creation
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "SuperRingPartsGUI"
-ScreenGui.ResetOnSpawn = false
-ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
-
-local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0, 220, 0, 190)
-MainFrame.Position = UDim2.new(0.5, -110, 0.5, -95)
-MainFrame.BackgroundColor3 = Color3.fromRGB(204, 0, 0) -- Light brown
-MainFrame.BorderSizePixel = 0
-MainFrame.Parent = ScreenGui
-
--- Make the GUI round
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0, 20)
-UICorner.Parent = MainFrame
-
+local Frame = Instance.new("Frame")
+local Line = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
-Title.Size = UDim2.new(1, 0, 0, 40)
-Title.Position = UDim2.new(0, 0, 0, 0)
-Title.Text = "Super Ring Parts v4"
-Title.TextColor3 = Color3.fromRGB(153, 0, 0) -- Dark brown
-Title.BackgroundColor3 = Color3.fromRGB(255, 51, 51) -- Lighter brown
-Title.Font = Enum.Font.Fondamento -- More elegant font
-Title.TextSize = 22
-Title.Parent = MainFrame
-
--- Round the title
-local TitleCorner = Instance.new("UICorner")
-TitleCorner.CornerRadius = UDim.new(0, 20)
-TitleCorner.Parent = Title
-
+local UIPadding = Instance.new("UIPadding")
+local UICorner = Instance.new("UICorner")
+local UICorner_2 = Instance.new("UICorner")
+local Hide = Instance.new("Frame")
 local ToggleButton = Instance.new("TextButton")
-ToggleButton.Size = UDim2.new(0.8, 0, 0, 35)
-ToggleButton.Position = UDim2.new(0.1, 0, 0.3, 0)
-ToggleButton.Text = "Ring Parts Off"
-ToggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255) -- Sienna
-ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Cornsilk
-ToggleButton.Font = Enum.Font.Fondamento
-ToggleButton.TextSize = 18
-ToggleButton.Parent = MainFrame
-
--- Round the toggle button
-local ToggleCorner = Instance.new("UICorner")
-ToggleCorner.CornerRadius = UDim.new(0, 10)
-ToggleCorner.Parent = ToggleButton
-
-local DecreaseRadius = Instance.new("TextButton")
-DecreaseRadius.Size = UDim2.new(0.2, 0, 0, 35)
-DecreaseRadius.Position = UDim2.new(0.1, 0, 0.6, 0)
-DecreaseRadius.Text = "<"
-DecreaseRadius.BackgroundColor3 = Color3.fromRGB(255, 153, 153) -- Saddle brown
-DecreaseRadius.TextColor3 = Color3.fromRGB(255, 255, 255) -- Cornsilk
-DecreaseRadius.Font = Enum.Font.Fondamento
-DecreaseRadius.TextSize = 18
-DecreaseRadius.Parent = MainFrame
-
--- Round the decrease button
-local DecreaseCorner = Instance.new("UICorner")
-DecreaseCorner.CornerRadius = UDim.new(0, 10)
-DecreaseCorner.Parent = DecreaseRadius
-
-local IncreaseRadius = Instance.new("TextButton")
-IncreaseRadius.Size = UDim2.new(0.2, 0, 0, 35)
-IncreaseRadius.Position = UDim2.new(0.7, 0, 0.6, 0)
-IncreaseRadius.Text = ">"
-IncreaseRadius.BackgroundColor3 = Color3.fromRGB(255, 153, 153) -- Saddle brown
-IncreaseRadius.TextColor3 = Color3.fromRGB(255, 255, 255) -- Cornsilk
-IncreaseRadius.Font = Enum.Font.Fondamento
-IncreaseRadius.TextSize = 18
-IncreaseRadius.Parent = MainFrame
-
--- Round the increase button
-local IncreaseCorner = Instance.new("UICorner")
-IncreaseCorner.CornerRadius = UDim.new(0, 10)
-IncreaseCorner.Parent = IncreaseRadius
-
+local UICorner_3 = Instance.new("UICorner")
+local credits = Instance.new("TextLabel")
+local UICorner_4 = Instance.new("UICorner")
+local plus = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local mine = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
 local RadiusDisplay = Instance.new("TextLabel")
-RadiusDisplay.Size = UDim2.new(0.4, 0, 0, 35)
-RadiusDisplay.Position = UDim2.new(0.3, 0, 0.6, 0)
-RadiusDisplay.Text = "Radius: 50"
-RadiusDisplay.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Tan
-RadiusDisplay.TextColor3 = Color3.fromRGB(255, 255, 255) -- Dark brown
-RadiusDisplay.Font = Enum.Font.Fondamento
-RadiusDisplay.TextSize = 18
-RadiusDisplay.Parent = MainFrame
+local UICorner_7 = Instance.new("UICorner")
 
--- Round the radius display
-local RadiusCorner = Instance.new("UICorner")
-RadiusCorner.CornerRadius = UDim.new(0, 10)
-RadiusCorner.Parent = RadiusDisplay
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local Watermark = Instance.new("TextLabel")
-Watermark.Size = UDim2.new(1, 0, 0, 20)
-Watermark.Position = UDim2.new(0, 0, 1, -20)
-Watermark.Text = "Super Ring [V4] by lukas"
-Watermark.TextColor3 = Color3.fromRGB(255, 255, 255) -- Dark brown
-Watermark.BackgroundTransparency = 1
-Watermark.Font = Enum.Font.Fondamento
-Watermark.TextSize = 14
-Watermark.Parent = MainFrame
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.140065148, 0, 0.433823526, 0)
+Frame.Size = UDim2.new(0, 216, 0, 201)
 
--- Add minimize button
-local MinimizeButton = Instance.new("TextButton")
-MinimizeButton.Size = UDim2.new(0, 30, 0, 30)
-MinimizeButton.Position = UDim2.new(1, -35, 0, 5)
-MinimizeButton.Text = "-"
-MinimizeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255) -- Saddle brown
-MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Cornsilk
-MinimizeButton.Font = Enum.Font.Fondamento
-MinimizeButton.TextSize = 18
-MinimizeButton.Parent = MainFrame
+Line.Name = "Line"
+Line.Parent = Frame
+Line.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Line.BorderSizePixel = 0
+Line.Position = UDim2.new(0, 0, 0.203440353, 0)
+Line.Size = UDim2.new(0, 216, 0, 1)
 
--- Round the minimize button
-local MinimizeCorner = Instance.new("UICorner")
-MinimizeCorner.CornerRadius = UDim.new(0, 15)
-MinimizeCorner.Parent = MinimizeButton
+Title.Name = "Title"
+Title.Parent = Frame
+Title.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Size = UDim2.new(0, 216, 0, 41)
+Title.Font = Enum.Font.Gotham
+Title.Text = "Ring by spr0ud4"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 16.000
+Title.TextXAlignment = Enum.TextXAlignment.Left
 
--- Minimize functionality
-local minimized = false
-MinimizeButton.MouseButton1Click:Connect(function()
-    minimized = not minimized
-    if minimized then
-        MainFrame:TweenSize(UDim2.new(0, 220, 0, 40), "Out", "Quad", 0.3, true)
-        MinimizeButton.Text = "+"
-        ToggleButton.Visible = false
-        DecreaseRadius.Visible = false
-        IncreaseRadius.Visible = false
-        RadiusDisplay.Visible = false
-        Watermark.Visible = false
-    else
-        MainFrame:TweenSize(UDim2.new(0, 220, 0, 190), "Out", "Quad", 0.3, true)
-        MinimizeButton.Text = "-"
-        ToggleButton.Visible = true
-        DecreaseRadius.Visible = true
-        IncreaseRadius.Visible = true
-        RadiusDisplay.Visible = true
-        Watermark.Visible = true
-    end
-    playSound("12221967")
-end)
+UIPadding.Parent = Title
+UIPadding.PaddingLeft = UDim.new(0, 8)
 
--- Make GUI draggable
-local dragging
-local dragInput
-local dragStart
-local startPos
+UICorner.Parent = Title
 
-local function update(input)
-    local delta = input.Position - dragStart
-    MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+UICorner_2.Parent = Frame
+
+Hide.Name = "Hide"
+Hide.Parent = Frame
+Hide.BackgroundColor3 = Color3.fromRGB(57, 57, 57)
+Hide.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Hide.BorderSizePixel = 0
+Hide.Position = UDim2.new(0, 0, 0.147787362, 0)
+Hide.Size = UDim2.new(0, 216, 0, 11)
+
+ToggleButton.Name = "ToggleButton"
+ToggleButton.Parent = Frame
+ToggleButton.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+ToggleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ToggleButton.BorderSizePixel = 0
+ToggleButton.Position = UDim2.new(0.0370370373, 0, 0.239134371, 0)
+ToggleButton.Size = UDim2.new(0, 200, 0, 35)
+ToggleButton.Font = Enum.Font.Gotham
+ToggleButton.Text = "Ring off"
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleButton.TextSize = 15.000
+
+UICorner_3.Parent = ToggleButton
+
+credits.Name = "credits"
+credits.Parent = Frame
+credits.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+credits.BorderColor3 = Color3.fromRGB(0, 0, 0)
+credits.BorderSizePixel = 0
+credits.Position = UDim2.new(0.0370370373, 0, 0.777707994, 0)
+credits.Size = UDim2.new(0, 200, 0, 35)
+credits.Font = Enum.Font.Gotham
+credits.Text = "credits undersky"
+credits.TextColor3 = Color3.fromRGB(255, 255, 255)
+credits.TextSize = 14.000
+
+UICorner_4.Parent = credits
+
+plus.Name = "plus"
+plus.Parent = Frame
+plus.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+plus.BorderColor3 = Color3.fromRGB(0, 0, 0)
+plus.BorderSizePixel = 0
+plus.Position = UDim2.new(0.0370370373, 0, 0.433164388, 0)
+plus.Size = UDim2.new(0, 90, 0, 30)
+plus.Font = Enum.Font.Gotham
+plus.Text = "+2"
+plus.TextColor3 = Color3.fromRGB(255, 255, 255)
+plus.TextSize = 15.000
+
+UICorner_5.Parent = plus
+
+mine.Name = "mine"
+mine.Parent = Frame
+mine.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+mine.BorderColor3 = Color3.fromRGB(0, 0, 0)
+mine.BorderSizePixel = 0
+mine.Position = UDim2.new(0.0370000191, 0, 0.604074657, 0)
+mine.Size = UDim2.new(0, 90, 0, 30)
+mine.Font = Enum.Font.Gotham
+mine.Text = "-2"
+mine.TextColor3 = Color3.fromRGB(255, 255, 255)
+mine.TextSize = 15.000
+
+UICorner_6.Parent = mine
+
+RadiusDisplay.Name = "RadiusDisplay"
+RadiusDisplay.Parent = Frame
+RadiusDisplay.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
+RadiusDisplay.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RadiusDisplay.BorderSizePixel = 0
+RadiusDisplay.Position = UDim2.new(0.509259284, 0, 0.433164388, 0)
+RadiusDisplay.Size = UDim2.new(0, 90, 0, 65)
+RadiusDisplay.Font = Enum.Font.Gotham
+RadiusDisplay.Text = "50"
+RadiusDisplay.TextColor3 = Color3.fromRGB(255, 255, 255)
+RadiusDisplay.TextSize = 22.000
+
+UICorner_7.Parent = RadiusDisplay
+
+local function BGLCQ_fake_script() -- Frame.Dragging 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UserInputService = game:GetService("UserInputService")
+	local runService = (game:GetService("RunService"));
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	function Lerp(a, b, m)
+		return a + (b - a) * m
+	end;
+	
+	local lastMousePos
+	local lastGoalPos
+	local DRAG_RadiusDisplay = (8); -- // The RadiusDisplay of the UI darg.
+	function Update(dt)
+		if not (startPos) then return end;
+		if not (dragging) and (lastGoalPos) then
+			gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_RadiusDisplay), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_RadiusDisplay))
+			return 
+		end;
+	
+		local delta = (lastMousePos - UserInputService:GetMouseLocation())
+		local xGoal = (startPos.X.Offset - delta.X);
+		local yGoal = (startPos.Y.Offset - delta.Y);
+		lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
+		gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_RadiusDisplay), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_RadiusDisplay))
+	end;
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+			lastMousePos = UserInputService:GetMouseLocation()
+	
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	runService.Heartbeat:Connect(Update)
 end
+coroutine.wrap(BGLCQ_fake_script)()
 
-MainFrame.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = MainFrame.Position
-        
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
+RadiusDisplays = 1
 
-MainFrame.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        dragInput = input
-    end
-end)
+local speaker = game:GetService("Players").LocalPlayer
 
-UserInputService.InputChanged:Connect(function(input)
-    if input == dragInput and dragging then
-        update(input)
-    end
-end)
+local chr = game.Players.LocalPlayer.Character
+local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 
--- Ring Parts Logic
+nowe = false
+
+Frame.Active = true -- main = gui
+
+--ringPartsEnabled
+
 if not getgenv().Network then
     getgenv().Network = {
         BaseParts = {},
@@ -374,23 +384,22 @@ RunService.Heartbeat:Connect(function()
     end
 end)
 
--- Button functionality
-ToggleButton.MouseButton1Click:Connect(function()
+-- butt
+
+ToggleButton.MouseButton1Down:connect(function()
     ringPartsEnabled = not ringPartsEnabled
-    ToggleButton.Text = ringPartsEnabled and "Ring Parts On" or "Ring Parts Off"
-    ToggleButton.BackgroundColor3 = ringPartsEnabled and Color3.fromRGB(50, 205, 50) or Color3.fromRGB(160, 82, 45)
-    playSound("12221967")
+    ToggleButton.Text = ringPartsEnabled and "Ring On" or "Ring Off"
+    ToggleButton.BackgroundColor3 = ringPartsEnabled and Color3.fromRGB(71, 71, 71) or Color3.fromRGB(71, 71, 71)
 end)
 
-DecreaseRadius.MouseButton1Click:Connect(function()
-    radius = math.max(1, radius - 2)
-    RadiusDisplay.Text = "Radius: " .. radius
-    playSound("12221967")
-end)
-
-IncreaseRadius.MouseButton1Click:Connect(function()
+plus.MouseButton1Down:connect(function()
     radius = math.min(1000, radius + 2)
-    RadiusDisplay.Text = "Radius: " .. radius
-    playSound("12221967")
+    RadiusDisplay.Text = "Rad: " .. radius
 end)
+
+mine.MouseButton1Down:connect(function()
+    radius = math.max(1, radius - 2)
+    RadiusDisplay.Text = "Rad: " .. radius
+end)
+
 
